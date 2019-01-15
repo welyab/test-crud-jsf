@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>oracle-jdbc-driver</groupId>
+  <artifactId>odbc6</artifactId>
+  <versioning>
+    <release>oracle-11g</release>
+    <versions>
+      <version>oracle-11g</version>
+    </versions>
+    <lastUpdated>20181003180731</lastUpdated>
+  </versioning>
+</metadata>

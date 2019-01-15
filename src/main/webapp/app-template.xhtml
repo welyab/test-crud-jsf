@@ -5,6 +5,7 @@
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -13,6 +14,11 @@
 	<style type="text/css">
 .ui-widget, .ui-widget .ui-widget {
 	font-size: 90%;
+}
+
+.companyHeaderGrid.ui-panelgrid>*>tr, .companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell
+	{
+	border: none;
 }
 </style>
 
@@ -25,15 +31,23 @@
 			outcome="app.xhtml" />
 
 		<p:menuitem
-			value="Empresa"
-			outcome="empresas.xhtml" />
+			value="Cadastrar empresas"
+			outcome="criar-editar-empresa.xhtml" />
+		<p:menuitem
+			value="Consultar empresas"
+			outcome="consultar-empresas.xhtml" />
 
 		<p:menuitem
-			value="Funcionários"
-			outcome="funcionarios.xhtml" />
+			value="Cadastrar funcionários"
+			outcome="criar-editar-funcionario.xhtml" />
+		<p:menuitem
+			value="Consultar funcionários"
+			outcome="consultar-funcionarios.xhtml" />
 	</p:menubar>
 
 	<p:spacer />
+
+	<ui:insert name="metadata" />
 
 	<p:panel header="#{header}">
 		<ui:insert name="content">

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/app-template.xhtml">
+
+		<ui:param
+			name="header"
+			value="#{criarEditarEmpresaController.editar ? 'Editar informações da empresa' : 'Criar nova empresa'}" />
+
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewAction action="#{criarEditarEmpresaController.inicializar}" />
+			</f:metadata>
+		</ui:define>
+
+		<ui:define name="content">
+
+			<h:form id="form">
+				<h:panelGroup id="formGroup">
+					<p:growl showDetail="true" />
+					<h:inputHidden value="#{criarEditarEmpresaController.empresa.id}" />
+					<p:panelGrid columns="2">
+
+						<p:outputLabel
+							value="ID:"
+							for="idEmpresa" />
+						<p:inputText
+							id="idEmpresa"
+							value="#{criarEditarEmpresaController.empresa.id}"
+							disabled="true" />
+
+						<p:outputLabel
+							value="Nome:"
+							for="nomeEmpresa" />
+						<p:inputText
+							id="nomeEmpresa"
+							value="#{criarEditarEmpresaController.empresa.nome}" />
+
+						<p:outputLabel
+							value="Faturamento:"
+							for="faturamentoEmpresa" />
+						<p:inputNumber
+							id="faturamentoEmpresa"
+							value="#{criarEditarEmpresaController.empresa.faturamento}" />
+
+					</p:panelGrid>
+				</h:panelGroup>
+
+				<p:spacer />
+
+				<p:commandButton
+					action="#{criarEditarEmpresaController.salvar}"
+					process="@form"
+					value="Salvar"
+					update="formGroup " />
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

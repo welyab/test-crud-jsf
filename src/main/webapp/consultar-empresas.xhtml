@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/app-template.xhtml">
+
+		<ui:param
+			name="header"
+			value="Consultar empresas" />
+
+		<ui:define name="metadata">
+			<f:metadata>
+			</f:metadata>
+		</ui:define>
+
+		<ui:define name="content">
+
+			<h:form id="form">
+				<h:panelGroup id="formGroup">
+					<p:growl
+						id="growl"
+						showDetail="true" />
+					<p:panelGrid columns="2">
+
+						<p:outputLabel
+							value="Nome:"
+							for="nomeEmpresa" />
+						<p:inputText
+							id="nomeEmpresa"
+							value="#{consultarEmpresasController.empresa.nome}" />
+
+						<p:outputLabel
+							value="Faturamento >= que:"
+							for="faturamentoEmpresa" />
+						<p:inputNumber
+							id="faturamentoEmpresa"
+							value="#{consultarEmpresasController.empresa.faturamento}" />
+
+					</p:panelGrid>
+				</h:panelGroup>
+
+				<p:spacer height="4" />
+
+				<p:commandButton
+					action="#{consultarEmpresasController.consultar}"
+					process="@form"
+					value="Pesquisar"
+					update="tableEmpresasGroup growl" />
+
+				<p:spacer height="4" />
+
+				<h:panelGroup id="tableEmpresasGroup">
+					<p:dataTable
+						value="#{consultarEmpresasController.empresas}"
+						var="empresa">
+						<p:column headerText="#">
+						#{empresa.id}
+					</p:column>
+
+						<p:column headerText="Nome">
+						#{empresa.nome}
+					</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
