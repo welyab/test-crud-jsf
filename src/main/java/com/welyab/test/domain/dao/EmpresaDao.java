@@ -113,8 +113,9 @@ public class EmpresaDao extends JdbcDao<Empresa, Long> implements CrudDao<Empres
 		Preconditions.checkNotNull(nome, "Parâmetro 'nome' não pode ser nulo");
 		Preconditions.checkNotNull(faturamento, "Parâmetro 'faturamento' não pode ser nulo");
 		try (PreparedStatement statement = getConnection()
-			.prepareStatement("select id, nome, atuacao, faturamento from empresa where nome like ?")) {
+			.prepareStatement("select id, nome, atuacao, faturamento from empresa where nome like ? and faturamento like ?")) {
 			statement.setString(1, "%" + nome + "%");
+			statement.setString(2, "%" + faturamento + "%");
 			ResultSet resultSet = statement.executeQuery();
 			List<Empresa> empresas = new ArrayList<>();
 			while (resultSet.next()) {

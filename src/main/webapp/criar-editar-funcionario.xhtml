@@ -5,17 +5,84 @@
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 </h:head>
+
 <h:body>
 
 	<ui:composition template="/app-template.xhtml">
+
 		<ui:param
 			name="header"
-			value="Criar ou editar funcionários" />
+			value="#{criarEditarFuncionarioController.editar ? 'Editar informações do funcionario' : 'Cadastrar Funcionario'}" />
+
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewAction action="#{criarEditarFuncionarioController.inicializar}" />
+			</f:metadata>
+		</ui:define>
+
+
 		<ui:define name="content">
-			Criar ou editar funcionários (em construção)
+
+			<h:form id="form">
+				<h:panelGroup id="formGroup">
+					<p:growl showDetail="true" />
+					<h:inputHidden value="#{criarEditarFuncionarioController.funcionario.id}" />
+					<p:panelGrid columns="2">
+
+						<p:outputLabel
+							value="ID da Funcionario:"
+							for="idFuncionario" />
+						<p:inputText
+							id="idFuncionario"
+							value="#{criarEditarFuncionarioController.funcionario.id}"
+							disabled="true" />
+							
+						<p:outputLabel
+							value="ID da Empresa:"
+							for="idEmpresa" />
+						<p:inputText
+							id="idEmpresa"
+							value="#{criarEditarFuncionarioController.funcionario.idEmpresa}" />							
+
+						<p:outputLabel
+							value="Nome:"
+							for="nomeFuncionario" />
+						<p:inputText
+							id="nomeFuncionario"
+							value="#{criarEditarFuncionarioController.funcionario.nome}" />
+							
+						<p:outputLabel
+							value="Email:"
+							for="EmailFuncionario" />
+						<p:inputText
+							id="EmailFuncionario"
+							value="#{criarEditarFuncionarioController.funcionario.email}" />							
+
+						<p:outputLabel
+							value="Data de Inicio:"
+							for="dataFuncionario" />
+						<p:inputText
+							id="dataFuncionario"
+							value="#{criarEditarFuncionarioController.funcionario.dataInicioTrabalho}" />
+						
+
+					</p:panelGrid>
+				</h:panelGroup>
+
+				<p:spacer />
+
+				<p:commandButton
+					action="#{criarEditarFuncionarioController.salvar()}"
+					process="@form"
+					value="Salvar"
+					update="formGroup " />
+			</h:form>
+
 		</ui:define>
 	</ui:composition>
 
