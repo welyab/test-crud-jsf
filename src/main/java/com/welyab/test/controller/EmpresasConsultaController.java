@@ -1,5 +1,7 @@
 package com.welyab.test.controller;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,22 +11,18 @@ import com.welyab.test.service.EmpresaService;
 
 @Named
 @RequestScoped
-public class EmpresaController {
-
-	private Empresa empresa;
+public class EmpresasConsultaController {
 
 	@Inject
 	private EmpresaService empresaService;
 
-	public void salvar() {
-		empresaService.salvar(empresa);
+	private List<Empresa> empresas;
+
+	public void consultar() {
+		empresas = empresaService.consulta();
 	}
 
-	public EmpresaController() {
-		empresa = new Empresa();
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
+	public List<Empresa> getEmpresas() {
+		return empresas;
 	}
 }

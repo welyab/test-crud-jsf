@@ -1,24 +1,48 @@
 <!DOCTYPE html>
-<html
-	lang="en"
-	xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 </h:head>
 <h:body>
 
 	<ui:composition template="/app-template.xhtml">
-		<ui:param
-			name="header"
-			value="Empresas" />
+		<ui:param name="header" value="Empresas" />
 		<ui:define name="content">
-			
-			----------------
-			
-			
+
+			<h:form>
+
+
+				<p:growl id="mensagens" showDetail="true" />
+
+				<p:panelGrid id="grid" columns="2">
+
+					<p:outputLabel for="idEmpresa" value="ID:" />
+					<p:inputText id="idEmpresa" value="#{empresaController.empresa.id}"
+						readonly="true" />
+
+					<p:outputLabel for="nomeEmpresa" value="Nome:" />
+					<p:inputText id="nomeEmpresa"
+						value="#{empresaController.empresa.nome}" />
+
+					<p:outputLabel for="atuacaoEmpresa" value="Atuacao:" />
+					<p:inputText id="atuacaoEmpresa"
+						value="#{empresaController.empresa.atuacao}" />
+
+					<p:outputLabel for="faturamentoEmpresa" value="Faturamento:" />
+					<p:inputNumber id="faturamentoEmpresa"
+						value="#{empresaController.empresa.faturamento}" />
+
+				</p:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{empresaController.salvar()}"
+					update="mensagens, grid" />
+
+			</h:form>
+
 		</ui:define>
 	</ui:composition>
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/app-template.xhtml">
+		<ui:param name="header" value="Empresas" />
+		<ui:define name="content">
+
+			<h:form>
+
+				<p:commandButton value="Consultar"
+					action="#{empresasConsultaController.consultar()}"
+					update="resultEmpresas" />
+
+				<p:dataTable id="resultEmpresas"
+					value="#{empresasConsultaController.empresas}" var="empresa">
+					<p:column headerText="ID">
+					#{empresa.id}
+				</p:column>
+
+					<p:column headerText="Nome">
+					#{empresa.nome}
+				</p:column>
+
+					<p:column headerText="Atuacao">
+					#{empresa.atuacao}
+				</p:column>
+
+					<p:column headerText="Faturamento">
+					#{empresa.faturamento}
+				</p:column>
+				</p:dataTable>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
